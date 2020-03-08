@@ -1,3 +1,4 @@
 **/xcshareddata/*
 **/xcuserdata/*
 *.xcworkspacedata
+*.xctimeline
