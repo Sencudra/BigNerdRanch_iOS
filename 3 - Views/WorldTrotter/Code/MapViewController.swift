@@ -97,7 +97,6 @@ final class MapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
                                       longitudinalMeters: 500)
         mapView.setRegion(zoom, animated: true)
         pinIndex = pinIndex < MapPinAnnotation.all.count - 1 ? pinIndex + 1 : 0
-        print(pinIndex)
     }
 
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
@@ -117,7 +116,6 @@ final class MapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
             pinView?.pinTintColor = .purple
             return pinView
         }
-        print("Resused")
         view.annotation = annotation
         return view
     }
@@ -131,7 +129,9 @@ final class MapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     }
 
     private func makeSegmentedControl() -> UISegmentedControl {
-        let segments = ["Standart", "Hybrid", "Satellite"]
+        typealias Localizable = String.Localizable.Map
+
+        let segments = [Localizable.standartMode, Localizable.hybridMode, Localizable.satelliteMode]
         let segmentedControl = UISegmentedControl(items: segments)
         segmentedControl.backgroundColor = UIColor.systemBackground.withAlphaComponent(0.5)
         segmentedControl.selectedSegmentIndex = 0

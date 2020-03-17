@@ -54,7 +54,8 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
                    replacementString string: String) -> Bool {
 
         var decimalSet = NSCharacterSet.decimalDigits
-        decimalSet.insert(",")
+        let decimalSeparator = Locale.current.decimalSeparator ?? "."
+        decimalSet.insert(charactersIn: decimalSeparator)
 
         if !CharacterSet.init(charactersIn: string).isSubset(of: decimalSet) {
             return false
@@ -74,8 +75,8 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Private methods
 
     @IBAction private func fahrenheitFieldEditingChanged(_ sender: UITextField) {
-        if let text = sender.text, let value = Double(text) {
-            fahrenheitValue = Measurement(value: value, unit: .fahrenheit)
+        if let text = sender.text, let value = numberFormatter.number(from: text) {
+            fahrenheitValue = Measurement(value: value.doubleValue, unit: .fahrenheit)
         } else {
             fahrenheitValue = nil
         }
