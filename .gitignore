@@ -2,3 +2,4 @@
 **/xcuserdata/*
 *.xcworkspacedata
 *.xctimeline
+.DS_Store

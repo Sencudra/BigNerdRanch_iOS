@@ -12,8 +12,15 @@ class ViewController: UIViewController {
 
     // MARK: - Private properties
 
-    @IBOutlet private weak var questionLabel: UILabel!
+    // UIViews
+    @IBOutlet private weak var currentQuestionLabel: UILabel!
+    @IBOutlet private weak var nextQuestionLabel: UILabel!
     @IBOutlet private weak var answerLabel: UILabel!
+    @IBOutlet private weak var nextQuestionButton: UIButton!
+
+    // Constraints
+    @IBOutlet private weak var currentQuestionLabelCenterXConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var nextQuestionLabelCenterXConstraint: NSLayoutConstraint!
 
     private var currentQuestionIndex: Int = 0
 
@@ -22,19 +29,61 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        questionLabel.text = Model.questions[currentQuestionIndex]
+        currentQuestionLabel.text = Model.questions[currentQuestionIndex]
+
+        updateOffScreenLabel()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        nextQuestionLabel.alpha = 0
     }
 
     // MARK: - Private methods
 
     @IBAction private func showNextQuestion(_ sender: UIButton) {
         currentQuestionIndex = currentQuestionIndex + 1 < Model.questions.count ? currentQuestionIndex + 1 : 0
-        questionLabel.text = Model.questions[currentQuestionIndex]
+        nextQuestionLabel.text = Model.questions[currentQuestionIndex]
         answerLabel.text = Model.defaultAnswer
+
+        animateLabelTransition()
+
+        nextQuestionButton.isEnabled = false
     }
 
     @IBAction private func showAnswer(_ sender: UIButton) {
         answerLabel.text = Model.answers[currentQuestionIndex]
+    }
+
+    private func animateLabelTransition() {
+        view.layoutIfNeeded()
+
+        let screenWidth = view.frame.width
+        nextQuestionLabelCenterXConstraint.constant = 0
+        currentQuestionLabelCenterXConstraint.constant += screenWidth
+
+        UIView.animate(withDuration: 1,
+                       delay: 0,
+                       usingSpringWithDamping: 0.6,
+                       initialSpringVelocity: 1,
+                       options: [],
+                       animations: {
+                           self.currentQuestionLabel.alpha = 0
+                           self.nextQuestionLabel.alpha = 1
+                           self.view.layoutIfNeeded()
+                       },
+                       completion: {_ in
+                           swap(&self.currentQuestionLabel, &self.nextQuestionLabel)
+                           swap(&self.currentQuestionLabelCenterXConstraint, &self.nextQuestionLabelCenterXConstraint)
+                           self.updateOffScreenLabel()
+                           self.nextQuestionButton.isEnabled = true
+                       })
+    }
+
+    private func updateOffScreenLabel() {
+        let screenWidth = view.frame.width
+        nextQuestionLabelCenterXConstraint.constant = -screenWidth
     }
 
 }

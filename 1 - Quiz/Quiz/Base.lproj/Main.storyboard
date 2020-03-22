@@ -41,15 +41,27 @@
                                     <action selector="showAnswer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CB4-me-c5Z"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="???" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rEn-b4-cJa">
+                                <rect key="frame" x="175" y="80" width="25" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="2R2-H4-xWp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="175" id="9LG-nf-srY"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2R2-H4-xWp" secondAttribute="trailing" constant="175" id="9dk-wR-9nX"/>
+                            <constraint firstItem="rEn-b4-cJa" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="AZp-rF-30n"/>
+                            <constraint firstItem="rEn-b4-cJa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="175" id="Nq3-ZW-yf5"/>
+                            <constraint firstItem="rEn-b4-cJa" firstAttribute="top" secondItem="2R2-H4-xWp" secondAttribute="top" id="QyV-fz-YO9"/>
                             <constraint firstItem="wYT-bJ-AJq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="TK8-A4-zHb"/>
                             <constraint firstItem="7kw-et-kG2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="aHq-Zs-95y"/>
                             <constraint firstItem="wYT-bJ-AJq" firstAttribute="top" secondItem="ZS8-xk-FyH" secondAttribute="bottom" constant="8" id="akH-8N-Xc1"/>
                             <constraint firstItem="ZS8-xk-FyH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cbo-9U-iBG"/>
                             <constraint firstItem="2R2-H4-xWp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="80" id="hBH-94-UtA"/>
                             <constraint firstItem="ZS8-xk-FyH" firstAttribute="top" secondItem="7kw-et-kG2" secondAttribute="bottom" constant="86" id="oNk-Zd-BVj"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="rEn-b4-cJa" secondAttribute="trailing" constant="175" id="sFL-lK-W2j"/>
                             <constraint firstItem="2R2-H4-xWp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="w8v-2n-BKZ"/>
                             <constraint firstItem="7kw-et-kG2" firstAttribute="top" secondItem="2R2-H4-xWp" secondAttribute="bottom" constant="8" id="xxj-1Z-pWH"/>
                         </constraints>
@@ -57,12 +69,16 @@
                     </view>
                     <connections>
                         <outlet property="answerLabel" destination="ZS8-xk-FyH" id="DjT-e2-FIS"/>
-                        <outlet property="questionLabel" destination="2R2-H4-xWp" id="fLb-ca-r1H"/>
+                        <outlet property="currentQuestionLabel" destination="2R2-H4-xWp" id="3uT-IF-vqc"/>
+                        <outlet property="currentQuestionLabelCenterXConstraint" destination="w8v-2n-BKZ" id="LEY-2S-ac0"/>
+                        <outlet property="nextQuestionButton" destination="7kw-et-kG2" id="iPh-tb-gae"/>
+                        <outlet property="nextQuestionLabel" destination="rEn-b4-cJa" id="qdr-Rv-QEO"/>
+                        <outlet property="nextQuestionLabelCenterXConstraint" destination="AZp-rF-30n" id="bor-4M-lsT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="133" y="139"/>
+            <point key="canvasLocation" x="132" y="138.98050974512745"/>
         </scene>
     </scenes>
 </document>
