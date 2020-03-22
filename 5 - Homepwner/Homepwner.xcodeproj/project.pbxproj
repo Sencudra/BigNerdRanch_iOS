@@ -16,7 +16,7 @@
 		9982AAA724279E5000C1E822 /* HomepwnerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9982AAA624279E5000C1E822 /* HomepwnerUITests.swift */; };
 		9982AAB52427B70900C1E822 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9982AAB42427B70900C1E822 /* ItemsViewController.swift */; };
 		9982AAB72427B8E300C1E822 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9982AAB62427B8E300C1E822 /* Item.swift */; };
-		9982AAB92427C05300C1E822 /* ItenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9982AAB82427C05300C1E822 /* ItenStore.swift */; };
+		9982AAB92427C05300C1E822 /* ItemStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9982AAB82427C05300C1E822 /* ItemStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,7 +52,7 @@
 		9982AAA824279E5000C1E822 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9982AAB42427B70900C1E822 /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
 		9982AAB62427B8E300C1E822 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
-		9982AAB82427C05300C1E822 /* ItenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItenStore.swift; sourceTree = "<group>"; };
+		9982AAB82427C05300C1E822 /* ItemStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,7 +111,7 @@
 				9982AA9224279E5000C1E822 /* Info.plist */,
 				9982AAB42427B70900C1E822 /* ItemsViewController.swift */,
 				9982AAB62427B8E300C1E822 /* Item.swift */,
-				9982AAB82427C05300C1E822 /* ItenStore.swift */,
+				9982AAB82427C05300C1E822 /* ItemStore.swift */,
 			);
 			path = Homepwner;
 			sourceTree = "<group>";
@@ -268,7 +268,7 @@
 				9982AAB72427B8E300C1E822 /* Item.swift in Sources */,
 				9982AAB52427B70900C1E822 /* ItemsViewController.swift in Sources */,
 				9982AA8524279E5000C1E822 /* AppDelegate.swift in Sources */,
-				9982AAB92427C05300C1E822 /* ItenStore.swift in Sources */,
+				9982AAB92427C05300C1E822 /* ItemStore.swift in Sources */,
 				9982AA8724279E5000C1E822 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

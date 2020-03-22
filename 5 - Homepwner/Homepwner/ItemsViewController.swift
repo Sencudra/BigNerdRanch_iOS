@@ -14,6 +14,20 @@ final class ItemsViewController: UITableViewController {
 
     var itemStore: ItemStore!
 
+    // MARK: - Private properties
+
+    private var valueThreshold: Int {
+        return 50
+    }
+
+    private var itemsAboveThreshold: [Item] {
+        return itemStore.allItems.filter{ $0.valueInDollars >= valueThreshold }
+    }
+
+    private var itemsBelowThreshold: [Item] {
+        return itemStore.allItems.filter{ $0.valueInDollars < valueThreshold }
+    }
+
     // MARK: - Overrides
 
     override func viewDidLoad() {
@@ -22,18 +36,40 @@ final class ItemsViewController: UITableViewController {
         adjustTableViewContentInset()
     }
 
+    // MARK: - UITableViewDataSource
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return itemStore.allItems.count
+        if section == 0 {
+            return itemsAboveThreshold.count
+        } else {
+            return itemsBelowThreshold.count + 1
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "Above $\(valueThreshold)"
+        } else {
+            return "Under $\(valueThreshold)"
+        }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
-        let item = itemStore.allItems[indexPath.row]
-
-        cell.textLabel?.text = item.name
-        cell.detailTextLabel?.text = "$\(item.valueInDollars)"
-        return cell
+        if indexPath.section == 1 && indexPath.row >= itemsBelowThreshold.count {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewLastCell", for: indexPath)
+            cell.textLabel?.text = "No more items!"
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
+            let item = (indexPath.section == 0) ? itemsAboveThreshold[indexPath.row] : itemsBelowThreshold[indexPath.row]
+            cell.textLabel?.text = item.name
+            cell.detailTextLabel?.text = "$\(item.valueInDollars)"
+            return cell
+        }
     }
 
     // MARK: - Private methods
