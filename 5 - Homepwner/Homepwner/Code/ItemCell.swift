@@ -39,12 +39,18 @@ class ItemCell: UITableViewCell {
         }
     }
 
+    var valueLabelColor: UIColor {
+        get {
+            return valueLabel.textColor
+        }
+        set {
+            valueLabel.textColor = newValue
+        }
+    }
+
     // MARK: - Private properties
 
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var serialNumberLabel: UILabel!
     @IBOutlet private weak var valueLabel: UILabel!
-
-
-
 }

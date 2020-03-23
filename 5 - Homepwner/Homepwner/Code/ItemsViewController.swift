@@ -14,6 +14,12 @@ final class ItemsViewController: UITableViewController {
 
     var itemStore: ItemStore!
 
+    // MARK: - Private properties
+
+    var valueTreshold: Int {
+        return 50
+    }
+
     // MARK: - Overrides
 
     override func viewDidLoad() {
@@ -65,6 +71,7 @@ final class ItemsViewController: UITableViewController {
         cell.nameLabelText = item.name
         cell.serialNumberLabelText = item.serialNumber
         cell.valueLabelText = "$\(item.valueInDollars)"
+        cell.valueLabelColor = (item.valueInDollars >= valueTreshold) ? UIColor.red : UIColor.green
         return cell
     }
 
