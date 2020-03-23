@@ -19,6 +19,9 @@ final class ItemsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 65
+
         adjustTableViewContentInset()
     }
 
@@ -31,7 +34,7 @@ final class ItemsViewController: UITableViewController {
             let indexPath = IndexPath(row: newItemIndex, section: 0)
             tableView.insertRows(at: [indexPath], with: .automatic)
         } else {
-            assertionFailure("Unable to find newItem in itemStore")
+            log(error: "Unable to find newItem in itemStore")
         }
 
     }
@@ -53,12 +56,15 @@ final class ItemsViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as? ItemCell else {
+            log(error: "Got not 'ItemCell' object!")
+            return UITableViewCell()
+        }
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
         let item = itemStore.allItems[indexPath.row]
-
-        cell.textLabel?.text = item.name
-        cell.detailTextLabel?.text = "$\(item.valueInDollars)"
+        cell.nameLabelText = item.name
+        cell.serialNumberLabelText = item.serialNumber
+        cell.valueLabelText = "$\(item.valueInDollars)"
         return cell
     }
 

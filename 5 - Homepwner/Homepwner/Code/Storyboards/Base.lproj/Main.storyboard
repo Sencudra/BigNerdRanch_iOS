@@ -44,29 +44,47 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UITableViewCell" textLabel="BBD-If-hm9" detailTextLabel="fLI-ZB-8gX" style="IBUITableViewCellStyleValue1" id="rtF-Ah-fSv">
-                                <rect key="frame" x="0.0" y="88" width="375" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemCell" rowHeight="65" id="rtF-Ah-fSv" customClass="ItemCell" customModule="Homepwner" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="88" width="375" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rtF-Ah-fSv" id="BuM-pn-0wU">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="65"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BBD-If-hm9">
-                                            <rect key="frame" x="16" y="12" width="33.5" height="20.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GJ0-Tn-l5L">
+                                            <rect key="frame" x="16" y="37" width="65" height="17"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                            <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HMa-yd-9fn">
+                                            <rect key="frame" x="330.5" y="22.5" width="28.5" height="20.5"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fLI-ZB-8gX">
-                                            <rect key="frame" x="315" y="12" width="44" height="20.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Some name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yAa-Y6-1Tb">
+                                            <rect key="frame" x="16" y="11" width="91" height="21"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="GJ0-Tn-l5L" firstAttribute="leading" secondItem="yAa-Y6-1Tb" secondAttribute="leading" id="0MZ-uq-siw"/>
+                                        <constraint firstItem="GJ0-Tn-l5L" firstAttribute="top" secondItem="yAa-Y6-1Tb" secondAttribute="bottom" constant="5" id="EAI-qE-yWZ"/>
+                                        <constraint firstAttribute="trailing" secondItem="HMa-yd-9fn" secondAttribute="trailing" constant="16" id="XfU-df-dOd"/>
+                                        <constraint firstItem="yAa-Y6-1Tb" firstAttribute="leading" secondItem="BuM-pn-0wU" secondAttribute="leadingMargin" id="jNg-us-ojS"/>
+                                        <constraint firstItem="HMa-yd-9fn" firstAttribute="centerY" secondItem="BuM-pn-0wU" secondAttribute="centerY" id="rjY-5h-snw"/>
+                                        <constraint firstItem="yAa-Y6-1Tb" firstAttribute="top" secondItem="BuM-pn-0wU" secondAttribute="topMargin" id="uJY-c0-zvt"/>
+                                        <constraint firstItem="GJ0-Tn-l5L" firstAttribute="bottom" secondItem="BuM-pn-0wU" secondAttribute="bottomMargin" id="vqc-Yu-A7S"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="nameLabel" destination="yAa-Y6-1Tb" id="lPb-oq-RMw"/>
+                                    <outlet property="serialNumberLabel" destination="GJ0-Tn-l5L" id="oob-Dg-gbh"/>
+                                    <outlet property="valueLabel" destination="HMa-yd-9fn" id="w0i-PT-QOf"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

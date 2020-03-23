@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9933138D2429309700153A26 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9933138C2429309700153A26 /* Helpers.swift */; };
+		9933138F2429341400153A26 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9933138E2429341400153A26 /* ItemCell.swift */; };
 		9982AA8524279E5000C1E822 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9982AA8424279E5000C1E822 /* AppDelegate.swift */; };
 		9982AA8724279E5000C1E822 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9982AA8624279E5000C1E822 /* SceneDelegate.swift */; };
 		9982AA8C24279E5000C1E822 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9982AA8A24279E5000C1E822 /* Main.storyboard */; };
@@ -37,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9933138C2429309700153A26 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		9933138E2429341400153A26 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		9982AA8124279E5000C1E822 /* Homepwner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homepwner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9982AA8424279E5000C1E822 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9982AA8624279E5000C1E822 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +84,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		993841E3242947210084C7F9 /* Code */ = {
+			isa = PBXGroup;
+			children = (
+				993841E62429474B0084C7F9 /* Base */,
+				993841E52429473A0084C7F9 /* Storyboards */,
+				9982AAB42427B70900C1E822 /* ItemsViewController.swift */,
+				9933138E2429341400153A26 /* ItemCell.swift */,
+				9982AAB82427C05300C1E822 /* ItemStore.swift */,
+				9933138C2429309700153A26 /* Helpers.swift */,
+				9982AAB62427B8E300C1E822 /* Item.swift */,
+			);
+			path = Code;
+			sourceTree = "<group>";
+		};
+		993841E4242947250084C7F9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9982AA8D24279E5000C1E822 /* Assets.xcassets */,
+				9982AA9224279E5000C1E822 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		993841E52429473A0084C7F9 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				9982AA8A24279E5000C1E822 /* Main.storyboard */,
+				9982AA8F24279E5000C1E822 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		993841E62429474B0084C7F9 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				9982AA8424279E5000C1E822 /* AppDelegate.swift */,
+				9982AA8624279E5000C1E822 /* SceneDelegate.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		9982AA7824279E5000C1E822 = {
 			isa = PBXGroup;
 			children = (
@@ -103,15 +148,8 @@
 		9982AA8324279E5000C1E822 /* Homepwner */ = {
 			isa = PBXGroup;
 			children = (
-				9982AA8424279E5000C1E822 /* AppDelegate.swift */,
-				9982AA8624279E5000C1E822 /* SceneDelegate.swift */,
-				9982AA8A24279E5000C1E822 /* Main.storyboard */,
-				9982AA8D24279E5000C1E822 /* Assets.xcassets */,
-				9982AA8F24279E5000C1E822 /* LaunchScreen.storyboard */,
-				9982AA9224279E5000C1E822 /* Info.plist */,
-				9982AAB42427B70900C1E822 /* ItemsViewController.swift */,
-				9982AAB62427B8E300C1E822 /* Item.swift */,
-				9982AAB82427C05300C1E822 /* ItemStore.swift */,
+				993841E3242947210084C7F9 /* Code */,
+				993841E4242947250084C7F9 /* Resources */,
 			);
 			path = Homepwner;
 			sourceTree = "<group>";
@@ -266,8 +304,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9982AAB72427B8E300C1E822 /* Item.swift in Sources */,
+				9933138D2429309700153A26 /* Helpers.swift in Sources */,
 				9982AAB52427B70900C1E822 /* ItemsViewController.swift in Sources */,
 				9982AA8524279E5000C1E822 /* AppDelegate.swift in Sources */,
+				9933138F2429341400153A26 /* ItemCell.swift in Sources */,
 				9982AAB92427C05300C1E822 /* ItemStore.swift in Sources */,
 				9982AA8724279E5000C1E822 /* SceneDelegate.swift in Sources */,
 			);
@@ -444,7 +484,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZPNFSD9RWC;
-				INFOPLIST_FILE = Homepwner/Info.plist;
+				INFOPLIST_FILE = Homepwner/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -462,7 +502,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZPNFSD9RWC;
-				INFOPLIST_FILE = Homepwner/Info.plist;
+				INFOPLIST_FILE = Homepwner/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
