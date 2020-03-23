@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9933138B24291D5700153A26 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9933138A24291D5700153A26 /* Helpers.swift */; };
 		9982AA8524279E5000C1E822 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9982AA8424279E5000C1E822 /* AppDelegate.swift */; };
 		9982AA8724279E5000C1E822 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9982AA8624279E5000C1E822 /* SceneDelegate.swift */; };
 		9982AA8C24279E5000C1E822 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9982AA8A24279E5000C1E822 /* Main.storyboard */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9933138A24291D5700153A26 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		9982AA8124279E5000C1E822 /* Homepwner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homepwner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9982AA8424279E5000C1E822 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9982AA8624279E5000C1E822 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				9982AAB42427B70900C1E822 /* ItemsViewController.swift */,
 				9982AAB62427B8E300C1E822 /* Item.swift */,
 				9982AAB82427C05300C1E822 /* ItemStore.swift */,
+				9933138A24291D5700153A26 /* Helpers.swift */,
 			);
 			path = Homepwner;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9982AAB72427B8E300C1E822 /* Item.swift in Sources */,
+				9933138B24291D5700153A26 /* Helpers.swift in Sources */,
 				9982AAB52427B70900C1E822 /* ItemsViewController.swift in Sources */,
 				9982AA8524279E5000C1E822 /* AppDelegate.swift in Sources */,
 				9982AAB92427C05300C1E822 /* ItemStore.swift in Sources */,
