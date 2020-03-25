@@ -86,19 +86,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="mMc-bL-n6f">
-                                <rect key="frame" x="16" y="60" width="343" height="195"/>
+                                <rect key="frame" x="16" y="60" width="343" height="548"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="sOT-8p-g2g">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="34"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="27"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LrL-GD-UZB">
-                                                <rect key="frame" x="0.0" y="0.0" width="45" height="34"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="45" height="27"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MfF-Qr-eBa" customClass="TextField" customModule="Homepwner" customModuleProvider="target">
-                                                <rect key="frame" x="55" y="0.0" width="288" height="34"/>
+                                                <rect key="frame" x="55" y="0.0" width="288" height="27"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
@@ -108,7 +108,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="SSX-DJ-faZ">
-                                        <rect key="frame" x="0.0" y="54" width="343" height="34"/>
+                                        <rect key="frame" x="0.0" y="47" width="343" height="34"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Serial" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KqB-Ep-iYG">
                                                 <rect key="frame" x="0.0" y="0.0" width="45" height="34"/>
@@ -127,7 +127,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="8xK-mM-r9E">
-                                        <rect key="frame" x="0.0" y="108" width="343" height="34"/>
+                                        <rect key="frame" x="0.0" y="101" width="343" height="34"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Value" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y77-SJ-jaq">
                                                 <rect key="frame" x="0.0" y="0.0" width="45" height="34"/>
@@ -145,8 +145,8 @@
                                             </textField>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lsB-yl-sOT">
-                                        <rect key="frame" x="0.0" y="162" width="343" height="33"/>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lsB-yl-sOT">
+                                        <rect key="frame" x="0.0" y="155" width="343" height="33"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                         <state key="normal" title="Date Created">
                                             <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -155,19 +155,45 @@
                                             <segue destination="2Fi-9V-mmA" kind="show" identifier="datePicker" id="BCn-sY-sev"/>
                                         </connections>
                                     </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="gMb-Me-HRT">
+                                        <rect key="frame" x="0.0" y="208" width="343" height="340"/>
+                                    </imageView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="MfF-Qr-eBa" firstAttribute="leading" secondItem="0Ra-Cn-3AZ" secondAttribute="leading" id="KNF-3y-PZC"/>
                                     <constraint firstItem="0Ra-Cn-3AZ" firstAttribute="leading" secondItem="Esh-f9-3zA" secondAttribute="leading" id="l3y-r1-CLo"/>
                                 </constraints>
                             </stackView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jw7-Yg-eZW">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="PAf-Bg-mqU"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem systemItem="camera" id="m3f-Wm-x0K">
+                                        <connections>
+                                            <action selector="takePicture:" destination="e91-AL-Q5C" id="5ln-6q-0wT"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="OpG-pZ-Mdf"/>
+                                    <barButtonItem systemItem="trash" id="hdG-81-eQX">
+                                        <connections>
+                                            <action selector="deleteImage:" destination="e91-AL-Q5C" id="QRa-3j-gbp"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="mMc-bL-n6f" firstAttribute="leading" secondItem="WyA-W8-nRS" secondAttribute="leadingMargin" id="BdV-2E-mkk"/>
                             <constraint firstAttribute="trailingMargin" secondItem="mMc-bL-n6f" secondAttribute="trailing" id="F6P-AA-Qn3"/>
-                            <constraint firstItem="mMc-bL-n6f" firstAttribute="top" secondItem="86O-af-SJC" secondAttribute="top" constant="16" id="Upf-Vr-FzO"/>
+                            <constraint firstItem="jw7-Yg-eZW" firstAttribute="leading" secondItem="86O-af-SJC" secondAttribute="leading" id="FrM-yK-URY"/>
+                            <constraint firstItem="mMc-bL-n6f" firstAttribute="top" secondItem="86O-af-SJC" secondAttribute="top" constant="16" id="Ntf-rN-fVa"/>
+                            <constraint firstItem="jw7-Yg-eZW" firstAttribute="trailing" secondItem="86O-af-SJC" secondAttribute="trailing" id="OWE-ZA-ybw"/>
+                            <constraint firstItem="86O-af-SJC" firstAttribute="bottom" secondItem="jw7-Yg-eZW" secondAttribute="bottom" id="TZY-es-u3m"/>
+                            <constraint firstItem="jw7-Yg-eZW" firstAttribute="top" secondItem="mMc-bL-n6f" secondAttribute="bottom" constant="15" id="uUt-z3-rIY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="86O-af-SJC"/>
                         <connections>
@@ -177,6 +203,7 @@
                     <navigationItem key="navigationItem" id="lSe-9x-hqR"/>
                     <connections>
                         <outlet property="dateCreatedButton" destination="lsB-yl-sOT" id="WYt-p3-Rwh"/>
+                        <outlet property="imageView" destination="gMb-Me-HRT" id="0FV-Ca-mHe"/>
                         <outlet property="nameField" destination="MfF-Qr-eBa" id="Jhc-8x-QvX"/>
                         <outlet property="serialField" destination="0Ra-Cn-3AZ" id="aRJ-Le-SeC"/>
                         <outlet property="valueField" destination="Esh-f9-3zA" id="o6D-95-wQv"/>
@@ -189,7 +216,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1746" y="29"/>
+            <point key="canvasLocation" x="1744.8" y="28.335832083958024"/>
         </scene>
         <!--Date created-->
         <scene sceneID="aop-lm-VaY">

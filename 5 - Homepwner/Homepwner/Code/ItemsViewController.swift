@@ -13,6 +13,7 @@ final class ItemsViewController: UITableViewController {
     // MARK: - Properties
 
     var itemStore: ItemStore!
+    var imageStore: ImageStore!
 
     // MARK: - Overrides
 
@@ -56,6 +57,7 @@ final class ItemsViewController: UITableViewController {
                 let item = itemStore.allItems[row]
                 let detailViewController = segue.destination as! DetailViewController
                 detailViewController.item = item
+                detailViewController.imageStore = imageStore
             }
         default:
             log(error: "Uknown segue identifier: <\(segue.identifier ?? "nil")>")
@@ -88,6 +90,7 @@ final class ItemsViewController: UITableViewController {
             let alertController = makeAlertForDeletingItem(withName: itemToDelete.name, deleteHandler: { [weak self] action in
                 self?.itemStore.removeItem(itemToDelete)
                 self?.tableView.deleteRows(at: [indexPath], with: .automatic)
+                self?.imageStore.deleteImage(forKey: itemToDelete.itemKey)
             })
             present(alertController, animated: true, completion: nil)
         }

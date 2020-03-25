@@ -16,6 +16,7 @@ final class Item: NSObject {
     var valueInDollars: Int
     var serialNumber: String?
     var dateCreated: Date
+    var itemKey: String
 
     // MARK: - Init
 
@@ -24,6 +25,7 @@ final class Item: NSObject {
         self.valueInDollars = valueInDollars
         self.serialNumber = serialNumber
         self.dateCreated = Date()
+        self.itemKey = UUID().uuidString
 
         super.init()
     }
