@@ -49,6 +49,22 @@ final class ItemsViewController: UITableViewController {
         }
     }
 
+    // MARK: - Segues
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "showItemDetails":
+            if let row = tableView.indexPathForSelectedRow?.row {
+                let item = itemStore.allItems[row]
+                let detailViewController = segue.destination as! DetailViewController
+                detailViewController.item = item
+            }
+        default:
+            log(error: "Uknown segue identifier: <\(segue.identifier ?? "nil")>")
+        }
+    }
+
+
     // MARK: - UITableViewDataSource
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
