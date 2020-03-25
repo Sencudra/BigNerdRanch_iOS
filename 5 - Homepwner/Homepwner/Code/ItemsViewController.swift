@@ -19,15 +19,21 @@ final class ItemsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationItem.leftBarButtonItem = editButtonItem
+
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 65
+    }
 
-        adjustTableViewContentInset()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        tableView.reloadData()
     }
 
     // MARK: - Private methods
 
-    @IBAction private func addNewItem(_ sender: UIButton) {
+    @IBAction private func addNewItem(_ sender: UIBarButtonItem) {
         let newItem = itemStore.createItem()
 
         if let newItemIndex = itemStore.allItems.firstIndex(of: newItem) {
@@ -39,19 +45,11 @@ final class ItemsViewController: UITableViewController {
 
     }
 
-    @IBAction private func toggleEditingMode(_ sender: UIButton) {
-        if isEditing {
-            sender.setTitle("Edit", for: .normal)
-            setEditing(false, animated: true)
-        } else {
-            sender.setTitle("Done", for: .normal)
-            setEditing(true, animated: true)
-        }
-    }
-
     // MARK: - Segues
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+
         switch segue.identifier {
         case "showItemDetails":
             if let row = tableView.indexPathForSelectedRow?.row {
@@ -63,7 +61,6 @@ final class ItemsViewController: UITableViewController {
             log(error: "Uknown segue identifier: <\(segue.identifier ?? "nil")>")
         }
     }
-
 
     // MARK: - UITableViewDataSource
 
@@ -101,13 +98,6 @@ final class ItemsViewController: UITableViewController {
     }
 
     // MARK: - Private methods
-
-    private func adjustTableViewContentInset() {
-        let statusBarHeight = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
-        let insets = UIEdgeInsets(top: statusBarHeight, left: 0, bottom: 0, right: 0)
-        tableView.contentInset = insets
-        tableView.scrollIndicatorInsets = insets
-    }
 
     private func makeAlertForDeletingItem(withName itemName: String, deleteHandler handler: @escaping ((UIAlertAction) -> Void)) -> UIAlertController {
         let ac = UIAlertController(title: "Delete \(itemName)?", message: "Are you sure you want to delete this item?", preferredStyle: .actionSheet)

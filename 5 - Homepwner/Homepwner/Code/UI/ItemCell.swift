@@ -45,6 +45,4 @@ class ItemCell: UITableViewCell {
     @IBOutlet private weak var serialNumberLabel: UILabel!
     @IBOutlet private weak var valueLabel: UILabel!
 
-
-
 }
