@@ -6,6 +6,7 @@
 //  Copyright © 2020 Vladislav Tarasevich. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 final class ItemStore {
@@ -13,6 +14,30 @@ final class ItemStore {
     // MARK: - Properties
 
     var allItems = [Item]()
+    var itemArchiveURL: URL = {
+        if let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            return documentDirectory.appendingPathComponent("items.archive")
+        } else {
+            preconditionFailure("Unable to construct itemArchieveURL")
+        }
+    }()
+
+    // MARK: - Private properties
+
+    private var errorHandler = { message in
+        preconditionFailure(message)
+    }
+
+    // MARK: - Init
+
+    init() {
+        guard let data = try? Data(contentsOf: itemArchiveURL) else {
+            log(info: "Nothing found at \(itemArchiveURL)")
+            return
+        }
+        guard let items = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Item] else { errorHandler("Unable unwrap to [Item]") }
+        allItems = items
+    }
 
     // MARK: - Methods
 
@@ -36,6 +61,17 @@ final class ItemStore {
         let movedItem = allItems[fromIndex]
         allItems.remove(at: fromIndex)
         allItems.insert(movedItem, at: toIndex)
+    }
+
+    // MARK: - Archiving
+
+    func saveChanges() {
+        do {
+            let data = try NSKeyedArchiver.archivedData(withRootObject: allItems, requiringSecureCoding: false)
+            try data.write(to: itemArchiveURL)
+        } catch {
+            log(error: "Unable to save items to <\(itemArchiveURL))>")
+        }
     }
 
 }

@@ -8,7 +8,37 @@
 
 import UIKit
 
-final class Item: NSObject {
+final class Item: NSObject, NSCoding, NSSecureCoding {
+
+    // MARK: - Static properties
+
+    static var supportsSecureCoding: Bool = true
+
+    // MARK: - Private types
+
+    enum Key {
+
+        static var name: String {
+            return "name"
+        }
+
+        static var valueInDollars: String {
+            return "valueInDollars"
+        }
+
+        static var serialNumber: String {
+            return "serialNumber"
+        }
+
+        static var dateCreated: String {
+            return "dateCreated"
+        }
+
+        static var itemKey: String {
+            return "itemKey"
+        }
+
+    }
 
     // MARK: - Properties
 
@@ -19,6 +49,31 @@ final class Item: NSObject {
     var itemKey: String
 
     // MARK: - Init
+
+    init?(coder decoder: NSCoder) {
+        let newName = decoder.decodeObject(of: NSString.self, forKey: Key.name) as String?
+        let newValueInDollars = decoder.decodeObject(of: NSNumber.self, forKey: Key.valueInDollars)?.intValue
+        let newSerialNumber = decoder.decodeObject(of: NSString.self, forKey: Key.serialNumber) as String?
+        let newDateCreated = decoder.decodeObject(of: NSNumber.self, forKey: Key.dateCreated)?.doubleValue as TimeInterval?
+        let newItemKey = decoder.decodeObject(of: NSString.self, forKey: Key.itemKey) as String?
+
+        if let newName = newName,
+           let newValueInDollars = newValueInDollars,
+           let newSerialNumber = newSerialNumber,
+           let newDateCreated = newDateCreated,
+           let newItemKey = newItemKey {
+
+            name = newName
+            valueInDollars = newValueInDollars
+            serialNumber = newSerialNumber
+            dateCreated = Date(timeIntervalSince1970: newDateCreated)
+            itemKey = newItemKey
+        } else {
+            log(error: "Unable to decode items!")
+            return nil
+        }
+        super.init()
+    }
 
     init(name: String, serialNumber: String?, valueInDollars: Int) {
         self.name = name
@@ -41,6 +96,20 @@ final class Item: NSObject {
             self.init(name: randomName,
                 serialNumber: randomSerialNumber,
                 valueInDollars: randomValue)
+        }
+    }
+
+    // MARK: - NSCoding extension
+
+    func encode(with coder: NSCoder) {
+        coder.encode(name as NSString, forKey: Key.name)
+        coder.encode(itemKey as NSString, forKey: Key.itemKey)
+
+        coder.encode(NSNumber(integerLiteral: valueInDollars), forKey: Key.valueInDollars)
+        coder.encode(NSNumber(integerLiteral: Int(dateCreated.timeIntervalSince1970)), forKey: Key.dateCreated)
+
+        if let number = serialNumber {
+            coder.encode(number as NSString, forKey: Key.serialNumber)
         }
     }
 
