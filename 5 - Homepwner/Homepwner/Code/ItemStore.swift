@@ -6,7 +6,6 @@
 //  Copyright © 2020 Vladislav Tarasevich. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 final class ItemStore {
@@ -15,11 +14,8 @@ final class ItemStore {
 
     var allItems = [Item]()
     var itemArchiveURL: URL = {
-        if let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-            return documentDirectory.appendingPathComponent("items.archive")
-        } else {
-            preconditionFailure("Unable to construct itemArchieveURL")
-        }
+        let directoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        return directoryURL.appendingPathComponent("items.archive")
     }()
 
     // MARK: - Private properties
