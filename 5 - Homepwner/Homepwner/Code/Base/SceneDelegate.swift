@@ -30,6 +30,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let itemsController = navController.topViewController as! ItemsViewController
         itemsController.itemStore = itemStore
         itemsController.imageStore = imageStore
+        log(info: "SCENE WILL CONNECT")
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -39,21 +40,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // The scene may re-connect later, as its session was not neccessarily discarded (see `application:didDiscardSceneSessions` instead).
 
         itemStore.saveChanges()
+        log(info: "SCENE DID DISCONNECT")
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+
+        log(info: "SCENE DID BECOME ACTIVE")
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
         // Called when the scene will move from an active state to an inactive state.
         // This may occur due to temporary interruptions (ex. an incoming phone call).
+
+        log(info: "SCENE WILL RESIGN ACTIVE")
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
+
+        log(info: "SCENE WILL ENTER FOREGROUND")
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
@@ -62,8 +70,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
 
         itemStore.saveChanges()
+        log(info: "SCENE DID ENTER BACKGROUND")
     }
 
 
 }
-
