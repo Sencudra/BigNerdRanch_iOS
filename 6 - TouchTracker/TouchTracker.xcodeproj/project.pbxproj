@@ -13,6 +13,9 @@
 		993F63792432A1D300A7966C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 993F63772432A1D300A7966C /* Main.storyboard */; };
 		993F637B2432A1D400A7966C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 993F637A2432A1D400A7966C /* Assets.xcassets */; };
 		993F637E2432A1D400A7966C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 993F637C2432A1D400A7966C /* LaunchScreen.storyboard */; };
+		993F638A2432A32D00A7966C /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993F63892432A32D00A7966C /* Line.swift */; };
+		993F638C2432A3F600A7966C /* DrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993F638B2432A3F600A7966C /* DrawView.swift */; };
+		995EA8A82433CF930045701C /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995EA8A72433CF930045701C /* Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		993F637A2432A1D400A7966C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		993F637D2432A1D400A7966C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		993F637F2432A1D400A7966C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		993F63892432A32D00A7966C /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
+		993F638B2432A3F600A7966C /* DrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawView.swift; sourceTree = "<group>"; };
+		995EA8A72433CF930045701C /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +74,9 @@
 				993F63882432A23B00A7966C /* Base */,
 				993F63872432A22D00A7966C /* Storyboards */,
 				993F63752432A1D300A7966C /* ViewController.swift */,
+				993F63892432A32D00A7966C /* Line.swift */,
+				993F638B2432A3F600A7966C /* DrawView.swift */,
+				995EA8A72433CF930045701C /* Helpers.swift */,
 			);
 			path = Code;
 			sourceTree = "<group>";
@@ -171,6 +180,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				993F63762432A1D300A7966C /* ViewController.swift in Sources */,
+				995EA8A82433CF930045701C /* Helpers.swift in Sources */,
+				993F638C2432A3F600A7966C /* DrawView.swift in Sources */,
+				993F638A2432A32D00A7966C /* Line.swift in Sources */,
 				993F63722432A1D300A7966C /* AppDelegate.swift in Sources */,
 				993F63742432A1D300A7966C /* SceneDelegate.swift in Sources */,
 			);
