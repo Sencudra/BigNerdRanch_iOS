@@ -28,6 +28,8 @@ final class DrawView: UIView {
     private var currentCircles = [NSValue: Circle]()
     private var finishedCircles = [Circle]()
 
+    private var selectedLineIndex: Int?
+
     @IBInspectable
     private var lineThickness: CGFloat = 10 {
         didSet {
@@ -35,7 +37,15 @@ final class DrawView: UIView {
         }
     }
 
-    // MARK: - Private methods
+    // MARK: - Init
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+
+        configureGestures()
+    }
+
+    // MARK: - Private action methods
 
     @IBAction private func changeDrawingType(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
@@ -55,7 +65,7 @@ final class DrawView: UIView {
 
     override func draw(_ rect: CGRect) {
         for line in finishedLines {
-            drawStroke(line)
+            drawStroke(line, color: line.color)
         }
 
         for circle in finishedCircles {
@@ -63,11 +73,16 @@ final class DrawView: UIView {
         }
 
         for (_, line) in currentLines {
-            drawStroke(line)
+            drawStroke(line, color: line.color)
         }
 
         for (_, circle) in currentCircles {
             drawCircle(circle)
+        }
+
+        if let index = selectedLineIndex {
+            let selectedLine = finishedLines[index]
+            drawStroke(selectedLine, color: UIColor.green)
         }
     }
 
@@ -143,8 +158,8 @@ final class DrawView: UIView {
 
     // MARK: - UI
 
-    private func drawStroke(_ line: Line) {
-        line.color.setStroke()
+    private func drawStroke(_ line: Line, color: UIColor) {
+        color.setStroke()
         let path = UIBezierPath()
         path.lineWidth = lineThickness
         path.lineCapStyle = .round
@@ -216,6 +231,62 @@ final class DrawView: UIView {
 
     private func getCurrentKeys(for circle: Circle) -> [NSValue] {
         return currentCircles.keys.filter { currentCircles[$0] == circle }
+    }
+
+    // MARK: - Gestures
+
+    private func configureGestures() {
+        let doubleTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(DrawView.doubleTap(_:)))
+        doubleTapRecognizer.numberOfTapsRequired = 2
+        doubleTapRecognizer.delaysTouchesBegan = true
+        addGestureRecognizer(doubleTapRecognizer)
+
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(DrawView.tap(_:)))
+        tapRecognizer.delaysTouchesBegan = true
+        tapRecognizer.require(toFail: doubleTapRecognizer)
+        addGestureRecognizer(tapRecognizer)
+    }
+
+    @objc
+    private func doubleTap(_ gestureRecognizer: UITapGestureRecognizer) {
+        log(info: "Recognized a double tap")
+
+        selectedLineIndex = nil
+        currentTouches.removeAll()
+
+        currentLines.removeAll()
+        finishedLines.removeAll()
+        currentCircles.removeAll()
+        finishedCircles.removeAll()
+
+        setNeedsDisplay()
+    }
+
+    @objc
+    private func tap(_ gestureRecognizer: UITapGestureRecognizer) {
+        log(info: "Recognized a tap")
+
+        let point = gestureRecognizer.location(in: self)
+        selectedLineIndex = indexOfLine(at: point)
+
+        setNeedsDisplay()
+    }
+
+    private func indexOfLine(at point: CGPoint) -> Int? {
+        for (index, line) in finishedLines.enumerated() {
+            let begin = line.start
+            let end = line.end
+
+            for t in stride(from: CGFloat(0), to: 1.0, by: 0.05) {
+                let x = begin.x + ((end.x - begin.x) * t)
+                let y = begin.y + ((end.y - begin.y) * t)
+
+                if hypot(x - point.x, y - point.y) < 120 {
+                    return index
+                }
+            }
+        }
+        return nil
     }
 
 }
