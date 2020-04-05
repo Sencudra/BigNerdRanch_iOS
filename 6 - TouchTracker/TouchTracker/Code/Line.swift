@@ -6,14 +6,14 @@
 //  Copyright © 2020 Vladislav Tarasevich. All rights reserved.
 //
 
-import Foundation
 import UIKit
-import CoreGraphics
 
 struct Line {
     var start = CGPoint.zero
     var end = CGPoint.zero
 }
+
+// MARK: - Line extension
 
 extension Line {
 

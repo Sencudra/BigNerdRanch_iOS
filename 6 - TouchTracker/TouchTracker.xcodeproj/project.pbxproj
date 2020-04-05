@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9903A0B924350F86004DE58A /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9903A0B824350F86004DE58A /* Circle.swift */; };
+		9903A0BD24352493004DE58A /* CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9903A0BC24352493004DE58A /* CGPoint.swift */; };
 		993F63722432A1D300A7966C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993F63712432A1D300A7966C /* AppDelegate.swift */; };
 		993F63742432A1D300A7966C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993F63732432A1D300A7966C /* SceneDelegate.swift */; };
 		993F63762432A1D300A7966C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993F63752432A1D300A7966C /* ViewController.swift */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9903A0B824350F86004DE58A /* Circle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
+		9903A0BC24352493004DE58A /* CGPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPoint.swift; sourceTree = "<group>"; };
 		993F636E2432A1D300A7966C /* TouchTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TouchTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		993F63712432A1D300A7966C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		993F63732432A1D300A7966C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,7 +78,9 @@
 				993F63882432A23B00A7966C /* Base */,
 				993F63872432A22D00A7966C /* Storyboards */,
 				993F63752432A1D300A7966C /* ViewController.swift */,
+				9903A0BC24352493004DE58A /* CGPoint.swift */,
 				993F63892432A32D00A7966C /* Line.swift */,
+				9903A0B824350F86004DE58A /* Circle.swift */,
 				993F638B2432A3F600A7966C /* DrawView.swift */,
 				995EA8A72433CF930045701C /* Helpers.swift */,
 			);
@@ -179,9 +185,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9903A0B924350F86004DE58A /* Circle.swift in Sources */,
 				993F63762432A1D300A7966C /* ViewController.swift in Sources */,
 				995EA8A82433CF930045701C /* Helpers.swift in Sources */,
 				993F638C2432A3F600A7966C /* DrawView.swift in Sources */,
+				9903A0BD24352493004DE58A /* CGPoint.swift in Sources */,
 				993F638A2432A32D00A7966C /* Line.swift in Sources */,
 				993F63722432A1D300A7966C /* AppDelegate.swift in Sources */,
 				993F63742432A1D300A7966C /* SceneDelegate.swift in Sources */,
