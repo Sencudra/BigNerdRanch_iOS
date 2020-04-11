@@ -21,7 +21,7 @@ extension Circle {
 
     mutating func updateWith(firstTouchLocation firstLocation: CGPoint, secondTouchLocation secondLocation: CGPoint) {
         self.center = CGPoint(x: (firstLocation.x + secondLocation.x) / 2, y: (firstLocation.y + secondLocation.y) / 2)
-        self.radius = CGFloat(sqrt(pow(firstLocation.x - secondLocation.x, 2) + pow(firstLocation.y - secondLocation.y, 2))) / 2
+        self.radius = CGFloat(hypot(firstLocation.x - secondLocation.x, firstLocation.y - secondLocation.y))
     }
 
 }

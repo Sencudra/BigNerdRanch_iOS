@@ -121,6 +121,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 993F63822432A1D400A7966C /* Build configuration list for PBXNativeTarget "TouchTracker" */;
 			buildPhases = (
+				9925D11E2441F7B700381AFD /* ShellScript */,
 				993F636A2432A1D300A7966C /* Sources */,
 				993F636B2432A1D300A7966C /* Frameworks */,
 				993F636C2432A1D300A7966C /* Resources */,
@@ -179,6 +180,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9925D11E2441F7B700381AFD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "../Tools/SwiftLint/swiftlint lint --strict --config ../Tools/SwiftLint/config.yml\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		993F636A2432A1D300A7966C /* Sources */ = {

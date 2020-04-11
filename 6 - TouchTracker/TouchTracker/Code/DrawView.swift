@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class DrawView: UIView, UIGestureRecognizerDelegate{
+final class DrawView: UIView, UIGestureRecognizerDelegate {
 
     // MARK: - Types
 
@@ -63,7 +63,8 @@ final class DrawView: UIView, UIGestureRecognizerDelegate{
 
     // MARK: - Methods
 
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+                           shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
 
@@ -79,7 +80,6 @@ final class DrawView: UIView, UIGestureRecognizerDelegate{
 
         default:
             log(error: "Unknown sender segemnt index \(sender.selectedSegmentIndex)")
-            break
         }
     }
 
@@ -192,7 +192,11 @@ final class DrawView: UIView, UIGestureRecognizerDelegate{
     }
 
     private func drawCircle(_ circle: Circle) {
-        let path = UIBezierPath(arcCenter: circle.center, radius: circle.radius, startAngle: CGFloat(0), endAngle: 2 * CGFloat.pi, clockwise: true)
+        let path = UIBezierPath(arcCenter: circle.center,
+                                radius: circle.radius,
+                                startAngle: CGFloat(0),
+                                endAngle: 2 * CGFloat.pi,
+                                clockwise: true)
         UIColor.red.setStroke()
         UIColor.red.setFill()
         path.stroke()

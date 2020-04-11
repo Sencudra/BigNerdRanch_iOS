@@ -15,4 +15,3 @@ func log(error message: String, file: String = #file, line: Int = #line) {
 func log(info message: String, file: String = #file, line: Int = #line) {
     print("\(file):\(line) - \(message)")
 }
-
