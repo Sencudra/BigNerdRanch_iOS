@@ -44,13 +44,6 @@ final class DrawView: UIView, UIGestureRecognizerDelegate {
 
     private var moveGestureRecognizer = UIPanGestureRecognizer()
 
-    @IBInspectable
-    private var lineThickness: CGFloat = 10 {
-        didSet {
-            setNeedsDisplay()
-        }
-    }
-
     // MARK: - Init
 
     required init?(coder: NSCoder) {
@@ -141,6 +134,12 @@ final class DrawView: UIView, UIGestureRecognizerDelegate {
 
             case .line:
                 currentLines[key]?.end = location
+
+                let velocity = moveGestureRecognizer.velocity(in: self)
+                let normalizedVelocity = (round(hypot(velocity.x, velocity.y)) / 20).truncatingRemainder(dividingBy: 40)
+                if let thickness = currentLines[key]?.thickness, normalizedVelocity > thickness {
+                    currentLines[key]?.thickness = normalizedVelocity
+                }
             }
         }
         setNeedsDisplay()
@@ -187,7 +186,7 @@ final class DrawView: UIView, UIGestureRecognizerDelegate {
     private func drawStroke(_ line: Line, color: UIColor) {
         color.setStroke()
         let path = UIBezierPath()
-        path.lineWidth = lineThickness
+        path.lineWidth = line.thickness
         path.lineCapStyle = .round
 
         path.move(to: line.start)

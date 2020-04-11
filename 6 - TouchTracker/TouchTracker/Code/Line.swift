@@ -11,6 +11,7 @@ import UIKit
 struct Line {
     var start = CGPoint.zero
     var end = CGPoint.zero
+    var thickness = CGFloat.zero
 }
 
 // MARK: - Line extension
