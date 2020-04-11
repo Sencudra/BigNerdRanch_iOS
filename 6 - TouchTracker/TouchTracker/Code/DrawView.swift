@@ -109,6 +109,10 @@ final class DrawView: UIView, UIGestureRecognizerDelegate {
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard selectedLineIndex == nil else {
+            return
+        }
+
         for touch in touches {
             let location = touch.location(in: self)
             let key = NSValue(nonretainedObject: touch)
