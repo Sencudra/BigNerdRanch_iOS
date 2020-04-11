@@ -66,7 +66,10 @@ final class DetailViewController: UIViewController {
 
         switch segue.identifier {
         case "datePicker":
-            let destination = segue.destination as! DatePickerViewController
+            guard let destination = segue.destination as? DatePickerViewController else {
+                log(error: "Unable to get segue destination")
+                return
+            }
             destination.item = item
         default:
             log(error: "Uknown segue identifier: <\(segue.identifier ?? "nil")>")
@@ -137,8 +140,12 @@ extension DetailViewController: UITextFieldDelegate {
 
 extension DetailViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let image = info[UIImagePickerController.InfoKey.editedImage] as! UIImage
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        guard let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
+            log(error: "Unable to get image.")
+            return
+        }
         imageStore.set(image, forKey: item.itemKey)
         imageView.image = image
         dismiss(animated: true, completion: nil)

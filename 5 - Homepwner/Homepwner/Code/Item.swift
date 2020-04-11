@@ -105,8 +105,8 @@ final class Item: NSObject, NSCoding, NSSecureCoding {
         coder.encode(name as NSString, forKey: Key.name)
         coder.encode(itemKey as NSString, forKey: Key.itemKey)
 
-        coder.encode(NSNumber(integerLiteral: valueInDollars), forKey: Key.valueInDollars)
-        coder.encode(NSNumber(integerLiteral: Int(dateCreated.timeIntervalSince1970)), forKey: Key.dateCreated)
+        coder.encode(NSNumber(value: valueInDollars), forKey: Key.valueInDollars)
+        coder.encode(NSNumber(value: Int(dateCreated.timeIntervalSince1970)), forKey: Key.dateCreated)
 
         if let number = serialNumber {
             coder.encode(number as NSString, forKey: Key.serialNumber)

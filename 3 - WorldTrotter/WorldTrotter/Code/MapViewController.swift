@@ -77,7 +77,7 @@ final class MapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
 
         case 2:
             mapView.mapType = .satellite
-    
+
         default:
             break
         }

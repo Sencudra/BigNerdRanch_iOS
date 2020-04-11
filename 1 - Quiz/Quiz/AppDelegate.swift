@@ -1,3 +1,4 @@
+// swiftlint:disable line_length
 //
 //  AppDelegate.swift
 //  Quiz
@@ -31,4 +32,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 }
-

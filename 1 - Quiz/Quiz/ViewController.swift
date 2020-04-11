@@ -43,7 +43,7 @@ class ViewController: UIViewController {
     // MARK: - Private methods
 
     @IBAction private func showNextQuestion(_ sender: UIButton) {
-        currentQuestionIndex = currentQuestionIndex + 1 < Model.questions.count ? currentQuestionIndex + 1 : 0
+        currentQuestionIndex = (currentQuestionIndex + 1 < Model.questions.count) ? currentQuestionIndex + 1 : 0
         nextQuestionLabel.text = Model.questions[currentQuestionIndex]
         answerLabel.text = Model.defaultAnswer
 
@@ -115,4 +115,3 @@ fileprivate extension ViewController {
     }
 
 }
-

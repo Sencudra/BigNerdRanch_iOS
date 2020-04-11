@@ -74,6 +74,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 990AD5C32414113400E7D7AD /* Build configuration list for PBXNativeTarget "Quiz" */;
 			buildPhases = (
+				9925D13F24423C3600381AFD /* ShellScript */,
 				990AD5AB2414113300E7D7AD /* Sources */,
 				990AD5AC2414113300E7D7AD /* Frameworks */,
 				990AD5AD2414113300E7D7AD /* Resources */,
@@ -132,6 +133,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9925D13F24423C3600381AFD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "../Tools/SwiftLint/swiftlint lint --strict --config ../Tools/SwiftLint/config.yml\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		990AD5AB2414113300E7D7AD /* Sources */ = {

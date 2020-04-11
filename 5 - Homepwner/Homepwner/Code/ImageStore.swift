@@ -44,8 +44,7 @@ final class ImageStore {
 
     private func storeToDisk(_ image: UIImage, forKey key: String) {
         let url = imageURL(forKey: key)
-        guard let data = image.jpegData(compressionQuality: 0.5),
-              let _ = try? data.write(to: url, options: [.atomic]) else {
+        guard let data = image.jpegData(compressionQuality: 0.5), (try? data.write(to: url, options: [.atomic])) != nil else {
                 log(error: "Unable to write <\(url)>")
                 return
         }

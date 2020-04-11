@@ -160,6 +160,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 99364F02241564C600C5D05E /* Build configuration list for PBXNativeTarget "WorldTrotter" */;
 			buildPhases = (
+				9925D14024423CEB00381AFD /* ShellScript */,
 				99364EEA241564C500C5D05E /* Sources */,
 				99364EEB241564C500C5D05E /* Frameworks */,
 				99364EEC241564C500C5D05E /* Resources */,
@@ -220,6 +221,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9925D14024423CEB00381AFD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "../Tools/SwiftLint/swiftlint lint --strict --config ../Tools/SwiftLint/config.yml\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		99364EEA241564C500C5D05E /* Sources */ = {

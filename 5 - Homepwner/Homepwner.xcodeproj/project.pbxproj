@@ -20,8 +20,6 @@
 		9982AA8C24279E5000C1E822 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9982AA8A24279E5000C1E822 /* Main.storyboard */; };
 		9982AA8E24279E5000C1E822 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9982AA8D24279E5000C1E822 /* Assets.xcassets */; };
 		9982AA9124279E5000C1E822 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9982AA8F24279E5000C1E822 /* LaunchScreen.storyboard */; };
-		9982AA9C24279E5000C1E822 /* HomepwnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9982AA9B24279E5000C1E822 /* HomepwnerTests.swift */; };
-		9982AAA724279E5000C1E822 /* HomepwnerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9982AAA624279E5000C1E822 /* HomepwnerUITests.swift */; };
 		9982AAB52427B70900C1E822 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9982AAB42427B70900C1E822 /* ItemsViewController.swift */; };
 		9982AAB72427B8E300C1E822 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9982AAB62427B8E300C1E822 /* Item.swift */; };
 /* End PBXBuildFile section */
@@ -59,11 +57,7 @@
 		9982AA9024279E5000C1E822 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9982AA9224279E5000C1E822 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9982AA9724279E5000C1E822 /* HomepwnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HomepwnerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9982AA9B24279E5000C1E822 /* HomepwnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepwnerTests.swift; sourceTree = "<group>"; };
-		9982AA9D24279E5000C1E822 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9982AAA224279E5000C1E822 /* HomepwnerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HomepwnerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9982AAA624279E5000C1E822 /* HomepwnerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepwnerUITests.swift; sourceTree = "<group>"; };
-		9982AAA824279E5000C1E822 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9982AAB42427B70900C1E822 /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
 		9982AAB62427B8E300C1E822 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		9982AAB82427C05300C1E822 /* ItemStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemStore.swift; sourceTree = "<group>"; };
@@ -152,8 +146,6 @@
 			isa = PBXGroup;
 			children = (
 				9982AA8324279E5000C1E822 /* Homepwner */,
-				9982AA9A24279E5000C1E822 /* HomepwnerTests */,
-				9982AAA524279E5000C1E822 /* HomepwnerUITests */,
 				9982AA8224279E5000C1E822 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -177,24 +169,6 @@
 			path = Homepwner;
 			sourceTree = "<group>";
 		};
-		9982AA9A24279E5000C1E822 /* HomepwnerTests */ = {
-			isa = PBXGroup;
-			children = (
-				9982AA9B24279E5000C1E822 /* HomepwnerTests.swift */,
-				9982AA9D24279E5000C1E822 /* Info.plist */,
-			);
-			path = HomepwnerTests;
-			sourceTree = "<group>";
-		};
-		9982AAA524279E5000C1E822 /* HomepwnerUITests */ = {
-			isa = PBXGroup;
-			children = (
-				9982AAA624279E5000C1E822 /* HomepwnerUITests.swift */,
-				9982AAA824279E5000C1E822 /* Info.plist */,
-			);
-			path = HomepwnerUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -202,6 +176,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9982AAAB24279E5000C1E822 /* Build configuration list for PBXNativeTarget "Homepwner" */;
 			buildPhases = (
+				9925D14224423EA600381AFD /* ShellScript */,
 				9982AA7D24279E5000C1E822 /* Sources */,
 				9982AA7E24279E5000C1E822 /* Frameworks */,
 				9982AA7F24279E5000C1E822 /* Resources */,
@@ -321,6 +296,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		9925D14224423EA600381AFD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "../Tools/SwiftLint/swiftlint lint --strict --config ../Tools/SwiftLint/config.yml\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9982AA7D24279E5000C1E822 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -345,7 +340,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9982AA9C24279E5000C1E822 /* HomepwnerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,7 +347,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9982AAA724279E5000C1E822 /* HomepwnerUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

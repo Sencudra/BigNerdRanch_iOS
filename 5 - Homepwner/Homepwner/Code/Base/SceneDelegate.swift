@@ -22,12 +22,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard (scene as? UIWindowScene) != nil else { return }
 
         let imageStore = ImageStore()
 
-        let navController = window!.rootViewController as! UINavigationController
-        let itemsController = navController.topViewController as! ItemsViewController
+        guard let navController = window!.rootViewController as? UINavigationController else {
+            log(error: "Unable to get navController")
+            return
+        }
+        guard let itemsController = navController.topViewController as? ItemsViewController else {
+            log(error: "Unable to get navController")
+            return
+        }
         itemsController.itemStore = itemStore
         itemsController.imageStore = imageStore
         log(info: "SCENE WILL CONNECT")
@@ -72,6 +78,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         itemStore.saveChanges()
         log(info: "SCENE DID ENTER BACKGROUND")
     }
-
 
 }

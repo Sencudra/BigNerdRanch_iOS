@@ -53,11 +53,13 @@ final class ItemsViewController: UITableViewController {
 
         switch segue.identifier {
         case "showItemDetails":
-            if let row = tableView.indexPathForSelectedRow?.row {
+            if let row = tableView.indexPathForSelectedRow?.row,
+               let detailViewController = segue.destination as? DetailViewController {
                 let item = itemStore.allItems[row]
-                let detailViewController = segue.destination as! DetailViewController
                 detailViewController.item = item
                 detailViewController.imageStore = imageStore
+            } else {
+                log(error: "Unable to prepare segue.")
             }
         default:
             log(error: "Uknown segue identifier: <\(segue.identifier ?? "nil")>")
@@ -83,11 +85,14 @@ final class ItemsViewController: UITableViewController {
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView,
+                            commit editingStyle: UITableViewCell.EditingStyle,
+                            forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let itemToDelete = itemStore.allItems[indexPath.row]
 
-            let alertController = makeAlertForDeletingItem(withName: itemToDelete.name, deleteHandler: { [weak self] action in
+            let alertController = makeAlertForDeletingItem(withName: itemToDelete.name,
+                                                           deleteHandler: { [weak self] _ in
                 self?.itemStore.removeItem(itemToDelete)
                 self?.tableView.deleteRows(at: [indexPath], with: .automatic)
                 self?.imageStore.deleteImage(forKey: itemToDelete.itemKey)
@@ -96,14 +101,19 @@ final class ItemsViewController: UITableViewController {
         }
     }
 
-    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView,
+                            moveRowAt sourceIndexPath: IndexPath,
+                            to destinationIndexPath: IndexPath) {
         itemStore.moveItem(from: sourceIndexPath.row, to: destinationIndexPath.row)
     }
 
     // MARK: - Private methods
 
-    private func makeAlertForDeletingItem(withName itemName: String, deleteHandler handler: @escaping ((UIAlertAction) -> Void)) -> UIAlertController {
-        let ac = UIAlertController(title: "Delete \(itemName)?", message: "Are you sure you want to delete this item?", preferredStyle: .actionSheet)
+    private func makeAlertForDeletingItem(withName itemName: String,
+                                          deleteHandler handler: @escaping ((UIAlertAction) -> Void)) -> UIAlertController {
+        let ac = UIAlertController(title: "Delete \(itemName)?",
+                                   message: "Are you sure you want to delete this item?",
+                                   preferredStyle: .actionSheet)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         ac.addAction(cancelAction)
 
