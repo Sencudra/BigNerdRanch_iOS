@@ -25,4 +25,15 @@ class Photo {
         self.photoIdentifier = photoIdentifier
         self.dateTaken = dateTaken
     }
+
+}
+
+// MARK: - Photo extension
+
+extension Photo: Equatable {
+
+    static func == (lhs: Photo, rhs: Photo) -> Bool {
+        return lhs.photoIdentifier == rhs.photoIdentifier
+    }
+
 }

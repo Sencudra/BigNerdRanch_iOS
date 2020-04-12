@@ -8,25 +8,50 @@
 
 import UIKit
 
-final class PhotosViewController: UIViewController {
+final class PhotosViewController: UIViewController, UICollectionViewDelegate {
 
     // MARK: - Properties
 
     var photoStore: PhotoStore?
-
-    // MARK: - Private properties
+    var photoDataSource = PhotoDateSource()
 
     // MARK: - Outlets
 
-    @IBOutlet private var imageView: UIImageView?
     @IBOutlet private var segmentedControl: UISegmentedControl?
+    @IBOutlet private var collectionView: UICollectionView?
 
     // MARK: - Overrides
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        collectionView?.dataSource = photoDataSource
+        collectionView?.delegate = self
         requestPhotosFetch(for: .interestingPhotos)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let photo = photoDataSource.photos[indexPath.row]
+
+        guard let store = photoStore else {
+            log(error: "photoStore is nil")
+            return
+        }
+
+        store.fetchImage(for: photo) { [weak self] result in
+            guard let this = self else {
+                log(error: "'self' is nil")
+                return
+            }
+            guard let photoIndex = this.photoDataSource.photos.firstIndex(of: photo), case .success(let image) = result else {
+                log(warning: "Unable to load photo")
+                return
+            }
+            let photoIndexPath = IndexPath(item: photoIndex, section: 0)
+            if let cell = this.collectionView?.cellForItem(at: photoIndexPath) as? PhotoCollectionViewCell {
+                cell.update(with: image)
+            }
+        }
     }
 
     // MARK: - IBActions
@@ -54,34 +79,20 @@ final class PhotosViewController: UIViewController {
         }
 
         store.fetchPhotos(for: method) { [weak self] result in
+            guard let this = self else {
+                log(error: "'self' is nil")
+                return
+            }
             switch result {
             case .success(let photos):
                 log(info: "Successfully got \(photos.count) photos")
-
-                if let first = photos.first {
-                    self?.updateImageView(with: first)
-                }
+                this.photoDataSource.photos = photos
 
             case .failure(let error):
                 log(warning: "\(error)")
+                this.photoDataSource.photos.removeAll()
             }
-        }
-    }
-
-    private func updateImageView(with photo: Photo) {
-        guard let store = photoStore else {
-            log(error: "Unable to use photoStore")
-            return
-        }
-
-        store.fetchImage(for: photo) { [weak self] result in
-            switch result {
-            case .success(let image):
-                self?.imageView?.image = image
-
-            case .failure(let error):
-                log(warning: "\(error)")
-            }
+            this.collectionView?.reloadData()
         }
     }
 
