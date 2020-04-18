@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class PhotosViewController: UIViewController, UICollectionViewDelegate {
+final class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     // MARK: - Properties
 
@@ -29,6 +29,49 @@ final class PhotosViewController: UIViewController, UICollectionViewDelegate {
         collectionView?.delegate = self
         requestPhotosFetch(for: .interestingPhotos)
     }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "showPhoto":
+            if let selectedIndexPath = collectionView?.indexPathsForSelectedItems?.first {
+                let photo = photoDataSource.photos[selectedIndexPath.row]
+
+                guard let destinationVC = segue.destination as? PhotoInfoViewController else {
+                    log(error: "Unwrapped nil value")
+                    return
+                }
+                destinationVC.photo = photo
+                destinationVC.store = photoStore
+            }
+        default:
+            preconditionFailure("Unexpected segue identigier \(segue.identifier ?? "nil")")
+        }
+
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        collectionView?.collectionViewLayout.invalidateLayout()
+    }
+
+    // MARK: - IBActions
+
+    @IBAction func segmentChanged(_ sender: UISegmentedControl) {
+        let method: Method
+        switch sender.selectedSegmentIndex {
+        case 0:
+            method = .interestingPhotos
+        case 1:
+            method = .recentPhotos
+        default:
+            log(error: "Unknown segment \(sender.selectedSegmentIndex)")
+            return
+        }
+        requestPhotosFetch(for: method)
+    }
+
+    // MARK: - Methods
 
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let photo = photoDataSource.photos[indexPath.row]
@@ -54,20 +97,9 @@ final class PhotosViewController: UIViewController, UICollectionViewDelegate {
         }
     }
 
-    // MARK: - IBActions
-
-    @IBAction func segmentChanged(_ sender: UISegmentedControl) {
-        let method: Method
-        switch sender.selectedSegmentIndex {
-        case 0:
-            method = .interestingPhotos
-        case 1:
-            method = .recentPhotos
-        default:
-            log(error: "Unknown segment \(sender.selectedSegmentIndex)")
-            return
-        }
-        requestPhotosFetch(for: method)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+      let itemWidth = collectionView.bounds.size.width / 2
+      return CGSize(width: itemWidth, height: itemWidth)
     }
 
     // MARK: - Private methods

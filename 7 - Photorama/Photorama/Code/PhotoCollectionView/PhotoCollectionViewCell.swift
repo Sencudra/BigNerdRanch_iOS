@@ -29,7 +29,7 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
         update(with: nil)
     }
 
-    // MARK: - Mmethods
+    // MARK: - Methods
 
     func update(with image: UIImage?) {
         if let image = image {
