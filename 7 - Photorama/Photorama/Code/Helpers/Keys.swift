@@ -24,7 +24,7 @@ struct Keys {
 
     // MARK: - Static properties
 
-    static func get(forKind kind: Kind) -> String {
+    static func get(for kind: Kind) -> String {
         do {
             switch kind {
             case .flickr:
@@ -48,7 +48,7 @@ struct Keys {
         if let path = Bundle.main.path(forResource: resourceName, ofType: resourceType) {
             return URL(fileURLWithPath: path)
         } else {
-            log(error: "Unable to find file <\(resourceName).\(resourceType)> with keys in the file system")
+            log(error: "Unable to find file <\(resourceName). \(resourceType)> with keys in the file system")
             return URL(string: "")!
         }
     }

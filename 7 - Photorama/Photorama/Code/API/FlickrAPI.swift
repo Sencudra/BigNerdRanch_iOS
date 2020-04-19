@@ -31,7 +31,7 @@ struct FlickrAPI {
 
     private static let baseURL = "https://api.flickr.com/services/rest"
 
-    private static let apiKey = Keys.get(forKind: .flickr)
+    private static let apiKey = Keys.get(for: .flickr)
 
     private static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()

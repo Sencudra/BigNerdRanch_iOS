@@ -85,12 +85,12 @@
 		9925D1432442424000381AFD /* Code */ = {
 			isa = PBXGroup;
 			children = (
+				998E6DF824433FF500C4F80F /* BaseDelegates */,
+				9925D1452442426600381AFD /* Storyboards */,
+				9994FB8E244C4A6C0079A1BC /* Services */,
 				9967C579244B7D2400C3C4A9 /* PhotoCollectionView */,
 				9967C578244B7D0F00C3C4A9 /* API */,
-				998E6DF824433FF500C4F80F /* BaseDelegates */,
 				9925D14B2442546400381AFD /* Helpers */,
-				9925D1452442426600381AFD /* Storyboards */,
-				9967C574244B796800C3C4A9 /* ImageStore.swift */,
 			);
 			path = Code;
 			sourceTree = "<group>";
@@ -138,7 +138,6 @@
 				9925D1472442493F00381AFD /* PhotosViewController.swift */,
 				9942DBDB2443B9A60055FE48 /* PhotoCollectionViewCell.swift */,
 				9942DBD92443B4C70055FE48 /* PhotoDataSource.swift */,
-				998E6DF62443379300C4F80F /* PhotoStore.swift */,
 				995607F024436C160049EBDC /* Photo.swift */,
 			);
 			path = PhotoCollectionView;
@@ -159,6 +158,15 @@
 				9925D12D24423C0000381AFD /* SceneDelegate.swift */,
 			);
 			path = BaseDelegates;
+			sourceTree = "<group>";
+		};
+		9994FB8E244C4A6C0079A1BC /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				9967C574244B796800C3C4A9 /* ImageStore.swift */,
+				998E6DF62443379300C4F80F /* PhotoStore.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
