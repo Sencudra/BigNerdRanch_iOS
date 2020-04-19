@@ -29,6 +29,12 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
         update(with: nil)
     }
 
+    override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
+        super.apply(layoutAttributes)
+
+        layer.anchorPoint = CGPoint(x: 0, y: 0.5)
+    }
+
     // MARK: - Methods
 
     func update(with image: UIImage?) {

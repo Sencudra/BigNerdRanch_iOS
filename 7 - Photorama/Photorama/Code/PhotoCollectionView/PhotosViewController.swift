@@ -8,12 +8,20 @@
 
 import UIKit
 
-final class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+final class PhotosViewController: UIViewController, UICollectionViewDelegate {
 
     // MARK: - Properties
 
     var photoStore: PhotoStore?
     var photoDataSource = PhotoDateSource()
+
+    var segementIndex: Int {
+        return segmentedControl?.selectedSegmentIndex ?? 0
+    }
+
+    // MARK: - Private properties
+
+    private var defaultLayout = UICollectionViewFlowLayout()
 
     // MARK: - Outlets
 
@@ -25,6 +33,11 @@ final class PhotosViewController: UIViewController, UICollectionViewDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        guard let layout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout else {
+            log(error: "Unable to get layout")
+            return
+        }
+        defaultLayout = layout
         collectionView?.dataSource = photoDataSource
         collectionView?.delegate = self
         requestPhotosFetch(for: .interestingPhotos)
@@ -62,8 +75,16 @@ final class PhotosViewController: UIViewController, UICollectionViewDelegate, UI
         switch sender.selectedSegmentIndex {
         case 0:
             method = .interestingPhotos
+            collectionView?.collectionViewLayout = defaultLayout
+
         case 1:
             method = .recentPhotos
+            collectionView?.collectionViewLayout = defaultLayout
+
+        case 2:
+            method = .recentPhotos
+            collectionView?.collectionViewLayout = FlipBookFlowLayout()
+
         default:
             log(error: "Unknown segment \(sender.selectedSegmentIndex)")
             return
@@ -97,11 +118,6 @@ final class PhotosViewController: UIViewController, UICollectionViewDelegate, UI
         }
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-      let itemWidth = collectionView.bounds.size.width / 2
-      return CGSize(width: itemWidth, height: itemWidth)
-    }
-
     // MARK: - Private methods
 
     private func requestPhotosFetch(for method: Method) {
@@ -126,6 +142,15 @@ final class PhotosViewController: UIViewController, UICollectionViewDelegate, UI
             }
             this.collectionView?.reloadData()
         }
+    }
+
+}
+
+extension PhotosViewController: UICollectionViewDelegateFlowLayout {
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+      let itemWidth = collectionView.bounds.size.width / 2
+      return CGSize(width: itemWidth, height: itemWidth)
     }
 
 }
