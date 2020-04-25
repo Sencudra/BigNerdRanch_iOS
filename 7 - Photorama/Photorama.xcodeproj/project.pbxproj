@@ -17,12 +17,14 @@
 		9925D14D2442547500381AFD /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9925D14C2442547500381AFD /* Helpers.swift */; };
 		9942DBDA2443B4C70055FE48 /* PhotoDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9942DBD92443B4C70055FE48 /* PhotoDataSource.swift */; };
 		9942DBDC2443B9A60055FE48 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9942DBDB2443B9A60055FE48 /* PhotoCollectionViewCell.swift */; };
-		995607F124436C160049EBDC /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995607F024436C160049EBDC /* Photo.swift */; };
 		9967C575244B796800C3C4A9 /* ImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9967C574244B796800C3C4A9 /* ImageStore.swift */; };
 		9967C577244B7D0800C3C4A9 /* PhotoInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9967C576244B7D0800C3C4A9 /* PhotoInfoViewController.swift */; };
 		998E6DF3244315E100C4F80F /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998E6DF2244315E100C4F80F /* Keys.swift */; };
 		998E6DF5244316DA00C4F80F /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 998E6DF4244316DA00C4F80F /* Keys.plist */; };
 		998E6DF72443379300C4F80F /* PhotoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998E6DF62443379300C4F80F /* PhotoStore.swift */; };
+		9997043C245472FD002C6B98 /* Photo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9997043A245472FD002C6B98 /* Photo+CoreDataProperties.swift */; };
+		99C23F5E244FA0EC00DBF366 /* Photorama.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 99C23F5C244FA0EC00DBF366 /* Photorama.xcdatamodeld */; };
+		99C23FA1244FA6A800DBF366 /* Photo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C23F9F244FA6A800DBF366 /* Photo+CoreDataClass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,12 +40,14 @@
 		9925D14C2442547500381AFD /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		9942DBD92443B4C70055FE48 /* PhotoDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDataSource.swift; sourceTree = "<group>"; };
 		9942DBDB2443B9A60055FE48 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
-		995607F024436C160049EBDC /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		9967C574244B796800C3C4A9 /* ImageStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageStore.swift; sourceTree = "<group>"; };
 		9967C576244B7D0800C3C4A9 /* PhotoInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInfoViewController.swift; sourceTree = "<group>"; };
 		998E6DF2244315E100C4F80F /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		998E6DF4244316DA00C4F80F /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		998E6DF62443379300C4F80F /* PhotoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoStore.swift; sourceTree = "<group>"; };
+		9997043A245472FD002C6B98 /* Photo+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Photo+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		99C23F5D244FA0EC00DBF366 /* Photorama.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Photorama.xcdatamodel; sourceTree = "<group>"; };
+		99C23F9F244FA6A800DBF366 /* Photo+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Photo+CoreDataClass.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,7 @@
 				998E6DF4244316DA00C4F80F /* Keys.plist */,
 				9925D13924423C0300381AFD /* Info.plist */,
 				9925D13424423C0300381AFD /* Assets.xcassets */,
+				99C23F5C244FA0EC00DBF366 /* Photorama.xcdatamodeld */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -134,11 +139,11 @@
 		9967C579244B7D2400C3C4A9 /* PhotoCollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				99C23FA3244FA6CA00DBF366 /* Photo+CoreData */,
 				9967C57A244B7E1900C3C4A9 /* PhotoInfo */,
 				9925D1472442493F00381AFD /* PhotosViewController.swift */,
 				9942DBDB2443B9A60055FE48 /* PhotoCollectionViewCell.swift */,
 				9942DBD92443B4C70055FE48 /* PhotoDataSource.swift */,
-				995607F024436C160049EBDC /* Photo.swift */,
 			);
 			path = PhotoCollectionView;
 			sourceTree = "<group>";
@@ -167,6 +172,15 @@
 				998E6DF62443379300C4F80F /* PhotoStore.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		99C23FA3244FA6CA00DBF366 /* Photo+CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				99C23F9F244FA6A800DBF366 /* Photo+CoreDataClass.swift */,
+				9997043A245472FD002C6B98 /* Photo+CoreDataProperties.swift */,
+			);
+			path = "Photo+CoreData";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,11 +277,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				9967C575244B796800C3C4A9 /* ImageStore.swift in Sources */,
+				99C23FA1244FA6A800DBF366 /* Photo+CoreDataClass.swift in Sources */,
 				9942DBDA2443B4C70055FE48 /* PhotoDataSource.swift in Sources */,
+				9997043C245472FD002C6B98 /* Photo+CoreDataProperties.swift in Sources */,
 				9942DBDC2443B9A60055FE48 /* PhotoCollectionViewCell.swift in Sources */,
-				995607F124436C160049EBDC /* Photo.swift in Sources */,
 				9925D1482442493F00381AFD /* PhotosViewController.swift in Sources */,
 				9967C577244B7D0800C3C4A9 /* PhotoInfoViewController.swift in Sources */,
+				99C23F5E244FA0EC00DBF366 /* Photorama.xcdatamodeld in Sources */,
 				998E6DF3244315E100C4F80F /* Keys.swift in Sources */,
 				9925D14A24424E5200381AFD /* FlickrAPI.swift in Sources */,
 				998E6DF72443379300C4F80F /* PhotoStore.swift in Sources */,
@@ -471,6 +487,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		99C23F5C244FA0EC00DBF366 /* Photorama.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				99C23F5D244FA0EC00DBF366 /* Photorama.xcdatamodel */,
+			);
+			currentVersion = 99C23F5D244FA0EC00DBF366 /* Photorama.xcdatamodel */;
+			path = Photorama.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 9925D12024423C0000381AFD /* Project object */;
 }

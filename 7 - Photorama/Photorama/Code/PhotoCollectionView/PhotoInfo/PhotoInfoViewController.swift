@@ -40,7 +40,7 @@ final class PhotoInfoViewController: UIViewController {
                 this.imageView.image = image
 
             case .failure(let error):
-                log(error: "Unable to fetch image for <\(this.photo.photoIdentifier)> with <\(error)>")
+                log(error: "Unable to fetch image for photo with <\(error)>")
             }
         }
     }

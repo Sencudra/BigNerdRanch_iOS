@@ -10,10 +10,18 @@ import UIKit
 
 final class PhotoCollectionViewCell: UICollectionViewCell {
 
+    // MARK: - Type
+
+    struct ViewModel {
+        let image: UIImage
+        let viewCount: Int
+    }
+
     // MARK: - Outlets
 
     @IBOutlet private var imageView: UIImageView?
     @IBOutlet private var spinner: UIActivityIndicatorView?
+    @IBOutlet private var viewCountLabel: UILabel?
 
     // MARK: - Overrides
 
@@ -31,13 +39,16 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
 
     // MARK: - Methods
 
-    func update(with image: UIImage?) {
-        if let image = image {
+    func update(with model: ViewModel?) {
+        if let model = model {
             spinner?.stopAnimating()
-            imageView?.image = image
+            imageView?.image = model.image
+            viewCountLabel?.text = "\(model.viewCount)"
+
         } else {
             spinner?.startAnimating()
             imageView?.image = nil
+            viewCountLabel?.text = ""
         }
     }
 

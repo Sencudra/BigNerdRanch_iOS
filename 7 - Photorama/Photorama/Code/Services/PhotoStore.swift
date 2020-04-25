@@ -6,8 +6,8 @@
 //  Copyright © 2020 Vladislav Tarasevich. All rights reserved.
 //
 
-import Foundation
 import UIKit
+import CoreData
 
 enum PhotosResult {
     case success([Photo])
@@ -30,6 +30,17 @@ class PhotoStore {
 
     private let imageStore = ImageStore()
 
+    private let persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "Photorama")
+        container.loadPersistentStores { _, error in
+            if let error = error {
+                log(error: "Error settings up Core Data \(error)")
+            }
+
+        }
+        return container
+    }()
+
     private let session: URLSession = {
         let config = URLSessionConfiguration.default
         return URLSession(configuration: config)
@@ -37,22 +48,43 @@ class PhotoStore {
 
     // MARK: - Methods
 
+    func fetchAllPhotos(for method: Method, completionHandler: @escaping (PhotosResult) -> Void) {
+        let fetchRequest: NSFetchRequest<Photo> = Photo.fetchRequest()
+        let predicate = NSPredicate(format: "\(#keyPath(Photo.method)) == %@", method.rawValue)
+        let sortedByDateTaken = NSSortDescriptor(key: #keyPath(Photo.dateTaken), ascending: true)
+
+        fetchRequest.sortDescriptors = [sortedByDateTaken]
+        fetchRequest.predicate = predicate
+
+        let viewContext = persistentContainer.viewContext
+        viewContext.perform {
+            do {
+                let allPhotos = try viewContext.fetch(fetchRequest)
+                completionHandler(.success(allPhotos))
+            } catch let error {
+                completionHandler(.failure(error))
+            }
+        }
+    }
+
     func fetchPhotos(for method: Method, completionHandler: @escaping (PhotosResult) -> Void) {
         let url = FlickrAPI.photosURL(for: method)
 
         let request = URLRequest(url: url)
-        let task = session.dataTask(with: request) { [weak self] (data, response, error) -> Void in
+        let task = session.dataTask(with: request) { [weak self] (data, _, error) -> Void in
             guard let this = self else {
                 completionHandler(.failure(PhotoStoreError.unexpected))
                 return
             }
 
-            if let response = response as? HTTPURLResponse {
-                log(info: "\(response.statusCode)")
-                log(info: "\(response.allHeaderFields)")
+            var result = this.processPhotosRequest(for: method, data: data, error: error)
+            if case .success = result {
+                do {
+                    try this.persistentContainer.viewContext.save()
+                } catch let error {
+                    result = .failure(error)
+                }
             }
-
-            let result = this.processPhotosRequest(data: data, error: error)
 
             OperationQueue.main.addOperation {
                 completionHandler(result)
@@ -62,15 +94,22 @@ class PhotoStore {
     }
 
     func fetchImage(for photo: Photo, completionHandler: @escaping (ImageResult) -> Void) {
+        guard let photoKey = photo.photoID else {
+            preconditionFailure("Photo expected to have a photoID.")
+        }
 
-        if let image = imageStore.getImage(forKey: photo.photoIdentifier) {
+        if let image = imageStore.getImage(forKey: photoKey) {
             OperationQueue.main.addOperation {
                 completionHandler(.success(image))
             }
             return
         }
 
-        let request = URLRequest(url: photo.remoteURL)
+        guard let photoURL = photo.remoteURL else {
+            preconditionFailure("Photo expected to have a photoID.")
+        }
+
+        let request = URLRequest(url: photoURL as URL)
         let task = session.dataTask(with: request) { [weak self] (data, _, error) -> Void in
             guard let this = self else {
                 completionHandler(.failure(PhotoStoreError.unexpected))
@@ -80,7 +119,7 @@ class PhotoStore {
             let result = this.processImageRequest(data: data, error: error)
 
             if case .success(let image) = result {
-                this.imageStore.set(image, forKey: photo.photoIdentifier)
+                this.imageStore.set(image, forKey: photoKey)
             }
 
             OperationQueue.main.addOperation {
@@ -92,14 +131,14 @@ class PhotoStore {
 
     // MARK: - Private methods
 
-    private func processPhotosRequest(data: Data?, error: Error?) -> PhotosResult {
+    private func processPhotosRequest(for method: Method, data: Data?, error: Error?) -> PhotosResult {
         guard let jsonData = data else {
             guard let error = error else {
                 return .failure(PhotoStoreError.unexpected)
             }
             return .failure(error)
         }
-        return FlickrAPI.photos(fromJSON: jsonData)
+        return FlickrAPI.photos(for: method, fromJSON: jsonData, into: persistentContainer.viewContext)
     }
 
     private func processImageRequest(data: Data?, error: Error?) -> ImageResult {

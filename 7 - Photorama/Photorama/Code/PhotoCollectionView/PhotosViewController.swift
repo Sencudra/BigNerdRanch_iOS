@@ -27,6 +27,9 @@ final class PhotosViewController: UIViewController, UICollectionViewDelegate, UI
 
         collectionView?.dataSource = photoDataSource
         collectionView?.delegate = self
+
+        updateDataSource(for: .interestingPhotos)
+
         requestPhotosFetch(for: .interestingPhotos)
     }
 
@@ -68,10 +71,35 @@ final class PhotosViewController: UIViewController, UICollectionViewDelegate, UI
             log(error: "Unknown segment \(sender.selectedSegmentIndex)")
             return
         }
+        collectionView?.scrollToItem(at: IndexPath(index: 0), at: .top, animated: true)
         requestPhotosFetch(for: method)
     }
 
     // MARK: - Methods
+
+    func updateDataSource(for method: Method) {
+        guard let store = photoStore else {
+            log(error: "Got photoStore == nil")
+            return
+        }
+
+        store.fetchAllPhotos(for: method) { [weak self] result in
+            guard let this = self else {
+                log(error: "'self' is nil")
+                return
+            }
+
+            switch result {
+            case .success(let photos):
+                this.photoDataSource.photos = photos
+
+            case .failure:
+                this.photoDataSource.photos.removeAll()
+            }
+            this.collectionView?.reloadSections(IndexSet(integer: 0))
+        }
+
+    }
 
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let photo = photoDataSource.photos[indexPath.row]
@@ -86,13 +114,19 @@ final class PhotosViewController: UIViewController, UICollectionViewDelegate, UI
                 log(error: "'self' is nil")
                 return
             }
+
             guard let photoIndex = this.photoDataSource.photos.firstIndex(of: photo), case .success(let image) = result else {
                 log(warning: "Unable to load photo")
                 return
             }
+
             let photoIndexPath = IndexPath(item: photoIndex, section: 0)
             if let cell = this.collectionView?.cellForItem(at: photoIndexPath) as? PhotoCollectionViewCell {
-                cell.update(with: image)
+
+                photo.views += 1
+
+                let viewModel = PhotoCollectionViewCell.ViewModel(image: image, viewCount: Int(photo.views))
+                cell.update(with: viewModel)
             }
         }
     }
@@ -110,21 +144,12 @@ final class PhotosViewController: UIViewController, UICollectionViewDelegate, UI
             return
         }
 
-        store.fetchPhotos(for: method) { [weak self] result in
+        store.fetchPhotos(for: method) { [weak self] _ in
             guard let this = self else {
                 log(error: "'self' is nil")
                 return
             }
-            switch result {
-            case .success(let photos):
-                log(info: "Successfully got \(photos.count) photos")
-                this.photoDataSource.photos = photos
-
-            case .failure(let error):
-                log(warning: "\(error)")
-                this.photoDataSource.photos.removeAll()
-            }
-            this.collectionView?.reloadData()
+            this.updateDataSource(for: method)
         }
     }
 

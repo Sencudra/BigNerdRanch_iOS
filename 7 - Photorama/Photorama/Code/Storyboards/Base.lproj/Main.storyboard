@@ -50,16 +50,25 @@
                                                         <constraint firstAttribute="width" constant="40" id="u19-DV-gbY"/>
                                                     </constraints>
                                                 </activityIndicatorView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YXb-n6-Pch">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YXb-n6-Pch">
                                                     <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Qn-6y-0jV">
+                                                    <rect key="frame" x="0.0" y="59" width="90" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="No5-hO-nvH" firstAttribute="centerY" secondItem="jQk-xe-Duh" secondAttribute="centerY" id="5Zb-ov-3Qs"/>
                                                 <constraint firstAttribute="trailing" secondItem="YXb-n6-Pch" secondAttribute="trailing" id="9Xz-Dy-Pvy"/>
                                                 <constraint firstAttribute="bottom" secondItem="YXb-n6-Pch" secondAttribute="bottom" id="T5Y-iY-Jv6"/>
+                                                <constraint firstAttribute="trailing" secondItem="1Qn-6y-0jV" secondAttribute="trailing" id="Tjs-X9-pYe"/>
                                                 <constraint firstItem="YXb-n6-Pch" firstAttribute="leading" secondItem="jQk-xe-Duh" secondAttribute="leading" id="UGb-6o-b2r"/>
                                                 <constraint firstItem="YXb-n6-Pch" firstAttribute="top" secondItem="jQk-xe-Duh" secondAttribute="top" id="hCN-xX-xu4"/>
+                                                <constraint firstItem="1Qn-6y-0jV" firstAttribute="leading" secondItem="jQk-xe-Duh" secondAttribute="leading" id="kWp-hz-5aB"/>
+                                                <constraint firstAttribute="bottom" secondItem="1Qn-6y-0jV" secondAttribute="bottom" constant="10" id="lQD-si-0lR"/>
                                                 <constraint firstItem="No5-hO-nvH" firstAttribute="centerX" secondItem="jQk-xe-Duh" secondAttribute="centerX" id="qAR-yb-oOj"/>
                                             </constraints>
                                         </collectionViewCellContentView>
@@ -67,6 +76,7 @@
                                         <connections>
                                             <outlet property="imageView" destination="YXb-n6-Pch" id="Nxv-J6-MY3"/>
                                             <outlet property="spinner" destination="No5-hO-nvH" id="hAU-S9-SXp"/>
+                                            <outlet property="viewCountLabel" destination="1Qn-6y-0jV" id="uIb-GY-8hx"/>
                                             <segue destination="jsJ-96-sVk" kind="show" identifier="showPhoto" id="wZK-2g-ysS"/>
                                         </connections>
                                     </collectionViewCell>
