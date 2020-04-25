@@ -9,8 +9,15 @@
 import UIKit
 import CoreData
 
+// MARK: - Results
+
 enum PhotosResult {
     case success([Photo])
+    case failure(Error)
+}
+
+enum TagsResult {
+    case success([Tag])
     case failure(Error)
 }
 
@@ -19,27 +26,32 @@ enum ImageResult {
     case failure(Error)
 }
 
+// MARK: - Errors
+
 enum PhotoStoreError: Error {
     case unexpected
     case imageCreation
 }
 
+// MARK: - Implementation
+
 class PhotoStore {
 
-    // MARK: - Private properties
+    // MARK: - Properties
 
-    private let imageStore = ImageStore()
-
-    private let persistentContainer: NSPersistentContainer = {
+    let persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "Photorama")
         container.loadPersistentStores { _, error in
             if let error = error {
                 log(error: "Error settings up Core Data \(error)")
             }
-
         }
         return container
     }()
+
+    // MARK: - Private properties
+
+    private let imageStore = ImageStore()
 
     private let session: URLSession = {
         let config = URLSessionConfiguration.default
@@ -67,6 +79,23 @@ class PhotoStore {
         }
     }
 
+    func fetchAllTags(completionHandler: @escaping (TagsResult) -> Void) {
+        let fetchRequest: NSFetchRequest<Tag> = Tag.fetchRequest()
+        let sortByName = NSSortDescriptor(key: #keyPath(Tag.name), ascending: true)
+
+        fetchRequest.sortDescriptors = [sortByName]
+
+        let viewContext = persistentContainer.viewContext
+        viewContext.perform {
+            do {
+                let allTags = try fetchRequest.execute()
+                completionHandler(.success(allTags))
+            } catch {
+                completionHandler(.failure(error))
+            }
+        }
+    }
+
     func fetchPhotos(for method: Method, completionHandler: @escaping (PhotosResult) -> Void) {
         let url = FlickrAPI.photosURL(for: method)
 
@@ -77,17 +106,10 @@ class PhotoStore {
                 return
             }
 
-            var result = this.processPhotosRequest(for: method, data: data, error: error)
-            if case .success = result {
-                do {
-                    try this.persistentContainer.viewContext.save()
-                } catch let error {
-                    result = .failure(error)
+            this.processPhotosRequest(for: method, data: data, error: error) { result in
+                OperationQueue.main.addOperation {
+                    completionHandler(result)
                 }
-            }
-
-            OperationQueue.main.addOperation {
-                completionHandler(result)
             }
         }
         task.resume()
@@ -131,14 +153,52 @@ class PhotoStore {
 
     // MARK: - Private methods
 
-    private func processPhotosRequest(for method: Method, data: Data?, error: Error?) -> PhotosResult {
+    private func processPhotosRequest(for method: Method,
+                                      data: Data?,
+                                      error: Error?,
+                                      completionHandler: @escaping (PhotosResult) -> Void) {
         guard let jsonData = data else {
             guard let error = error else {
-                return .failure(PhotoStoreError.unexpected)
+                completionHandler(.failure(PhotoStoreError.unexpected))
+                return
             }
-            return .failure(error)
+            completionHandler(.failure(error))
+            return
         }
-        return FlickrAPI.photos(for: method, fromJSON: jsonData, into: persistentContainer.viewContext)
+
+        persistentContainer.performBackgroundTask { [weak self] context in
+            guard let this = self else {
+                log(error: "Unexpectedly unwrapped nil")
+                return
+            }
+
+            let result = FlickrAPI.photos(for: method, fromJSON: jsonData, into: this.persistentContainer.viewContext)
+
+            do {
+                try context.save()
+            } catch {
+                log(error: "Error saving to Core Data: \(error)")
+                completionHandler(.failure(error))
+                return
+            }
+
+            switch result {
+            case .success(let photos):
+                let photoIDs = photos.map { $0.objectID }
+                let viewContext = this.persistentContainer.viewContext
+
+                let viewContextPhotos = photoIDs.map { viewContext.object(with: $0) } as? [Photo]
+
+                guard let photos = viewContextPhotos else {
+                    return
+                }
+                completionHandler(.success(photos))
+
+            case .failure:
+                completionHandler(result)
+
+            }
+        }
     }
 
     private func processImageRequest(data: Data?, error: Error?) -> ImageResult {

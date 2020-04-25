@@ -7,8 +7,14 @@
         <attribute name="remoteURL" optional="YES" attributeType="Transformable" customClassName="NSURL"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="views" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="tags" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="photos" inverseEntity="Tag"/>
+    </entity>
+    <entity name="Tag" representedClassName="Tag" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="photos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Photo" inverseName="tags" inverseEntity="Photo"/>
     </entity>
     <elements>
-        <element name="Photo" positionX="-63" positionY="-18" width="128" height="133"/>
+        <element name="Photo" positionX="-63" positionY="-18" width="128" height="148"/>
+        <element name="Tag" positionX="-63" positionY="27" width="128" height="73"/>
     </elements>
 </model>
